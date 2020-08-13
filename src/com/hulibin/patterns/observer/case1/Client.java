@@ -14,8 +14,15 @@ public class Client {
 		hu.attach(observer2);
 
 		hu.setState("h1");
-
 		hu.notifys();
+
+		//设置监听器
+
+		hu.addListener(()->{
+			System.out.println(observer1.name);
+		});
+
+		hu.notifyByListener();
 
 	}
 }

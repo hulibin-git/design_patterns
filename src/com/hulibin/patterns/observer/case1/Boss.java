@@ -11,11 +11,19 @@ import java.util.List;
 public class Boss implements Subject{
 
 	private List<Observers> observersList = new ArrayList<>();
+
+	private List<Listener> listeners = new ArrayList<>();
+
 	private String action;
 
 	@Override
 	public void attach(Observers observers) {
 		observersList.add(observers);
+	}
+
+	@Override
+	public void addListener(Listener listener) {
+		listeners.add(listener);
 	}
 
 	@Override
@@ -28,6 +36,11 @@ public class Boss implements Subject{
 		for (Observers observers : observersList) {
 			observers.update();
 		}
+	}
+
+	@Override
+	public void notifyByListener() {
+		listeners.forEach(listener -> listener.update());
 	}
 
 	@Override
